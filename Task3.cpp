@@ -7,7 +7,7 @@ int columns;
 char token='x';
 bool tie=false;
 void fone(){
-
+//create the board
     cout<<"   |     | \n";
     cout<<" "<<space[0][0]<<" | "<<space[0][1]<<"   | "<<space[0][2]<<endl;
     cout<<"___|_____|___\n";
@@ -21,6 +21,7 @@ void fone(){
 }
 
 void ftwo(){
+ //x and o input loop
 int digit;
 if(token=='x'){
     cout<<n1<<" please enter:";
@@ -30,7 +31,7 @@ else{
     cout<<n2<<" please enter:";
     cin>>digit;
 }
-
+//replace array spaces with x and 0
 if(digit==1){
     rows=0;
     columns=0;
@@ -72,7 +73,7 @@ else{
 }
 if(token=='o' && space[rows][columns] !='x' && space[rows][columns] !='o'){
     space[rows][columns]='o';
-    token='x';
+    token='x';//after the turn of o next turn is x
 }
 else if(token=='x' && space[rows][columns] !='x' && space[rows][columns] !='o'){
     space[rows][columns]='x';
@@ -84,14 +85,16 @@ else{
 }
 bool fthree(){
     for(int i=0;i<3;i++){
+     //check for horizontal and vertical winners
         if(space[i][0]==space[i][1] && space[i][0]==space[i][2] || space[0][i]==space[1][i] && space[0][i]==space[2][i]){
             return true;
         }
     }
+ //check for diagonal winners
     if(space[0][0]==space[1][1] && space[0][0]==space[2][2] || space[2][0]==space[1][1] && space[2][0]==space[0][2]){
         return true;
     }
-   
+   //check for tie
     for(int i=0;i<3;i++)
     {
         for(int j=0;j<3;j++)
@@ -106,6 +109,7 @@ bool fthree(){
 }
 
 void four(){
+ //input name 
     cout<<"Enter the name of first player:";
     getline(cin,n1);
     cout<<"Enter the name of second player:";
@@ -118,7 +122,7 @@ void four(){
         ftwo();
         fthree();
     }
-
+//winner declaration
     if(token=='x' && tie==false){
         cout<<n2<<" Wins!"<<endl;
     }
